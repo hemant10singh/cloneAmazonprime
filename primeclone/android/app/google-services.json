@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "952274720556",
+    "project_id": "signinprime-21f42",
+    "storage_bucket": "signinprime-21f42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952274720556:android:fa0da3a11d156cb1f87e89",
+        "android_client_info": {
+          "package_name": "com.example.primeclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952274720556-10fp9cjnl7r9t75uscspqc3ahca36g5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.primeclone",
+            "certificate_hash": "8c9c36cc8daa44f06897cd3c9d7075827c2baaca"
+          }
+        },
+        {
+          "client_id": "952274720556-qgktaqh8slt4i2kjfffrhcn5ladj0gfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9DizcNYpJGg99dtyCMJzfgAmN2s3dILk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952274720556-qgktaqh8slt4i2kjfffrhcn5ladj0gfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

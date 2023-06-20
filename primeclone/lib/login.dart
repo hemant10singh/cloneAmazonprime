@@ -1,13 +1,13 @@
-import 'package:amazonprimeclone/signup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:primeclone/signup.dart';
 
-class LoginPage extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
 
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                  ElevatedButton(
                 onPressed: () {
                   //  login logic here
-                   Navigator.push(context,MaterialPageRoute(builder: (context) => SignupPage()),);
+                   Navigator.push(context,MaterialPageRoute(builder: (context) => Signup()),);
               
                 },
                 child: Text('Create a new Amazon account',
