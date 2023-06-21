@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'login.dart';
@@ -10,7 +11,7 @@ class Signup extends StatefulWidget {
 
 class _SignupPageState extends State<Signup> {
   
-   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -105,8 +106,16 @@ class _SignupPageState extends State<Signup> {
                  width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add your login logic here
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => Login()));
+                    // Add your login logic here  
+                    FirebaseAuth.instance.createUserWithEmailAndPassword(               //aunthentication logic
+                      email: _emailController.text,
+                      password: _passwordController.text).then((value){
+                        print("Created new Account");
+                        Navigator.push(context,MaterialPageRoute(builder: (context) => Login()));
+                    }).onError((error, stackTrace){
+                      print("Error ${error.toString()}");
+                    });
+                  
                   },
                   child: Text('Continue',                     //continue button
                    style: TextStyle(
@@ -127,6 +136,7 @@ class _SignupPageState extends State<Signup> {
               alignment: Alignment.center,                         //Forget button in the right corner
                child: TextButton(
                   onPressed: () {
+                    
                     Navigator.push(context,MaterialPageRoute(builder: (context) => Login()));
                   },
                   child: Text(

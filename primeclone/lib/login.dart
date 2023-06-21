@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:primeclone/homePage.dart';
 import 'package:primeclone/signup.dart';
 
 class Login extends StatefulWidget {
@@ -94,6 +96,14 @@ class _LoginPageState extends State<Login> {
                 child: ElevatedButton(
                   onPressed: () {
                     // Add your login logic here
+                    FirebaseAuth.instance.signInWithEmailAndPassword(             //aunthentication logic
+                      email: _emailController.text,
+                      password: _passwordController.text).then((value){
+                        print("Signed in");
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage()));
+                      }).onError((error, stackTrace){
+                         print("Error ${error.toString()}");
+                      });
                   },
                   child: Text('Sign in',                     //sign in button
                    style: TextStyle(
@@ -136,7 +146,6 @@ class _LoginPageState extends State<Login> {
                 onPressed: () {
                   //  login logic here
                    Navigator.push(context,MaterialPageRoute(builder: (context) => Signup()),);
-              
                 },
                 child: Text('Create a new Amazon account',
                  style: TextStyle(
