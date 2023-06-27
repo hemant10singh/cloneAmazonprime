@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:primeclone/movies/action.dart';
+import 'package:primeclone/profile.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -89,10 +90,15 @@ class _HomePageState extends State<Homepage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
             icon: Icon(
               Icons.account_circle,
-              color: Colors.white,
+              color: Colors.blue,
               size: 40,
             ),
           ),

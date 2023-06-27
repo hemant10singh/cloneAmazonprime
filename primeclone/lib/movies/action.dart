@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:primeclone/homePage.dart';
 
+import '../profile.dart';
+
 List<String> imagePaths = [
   'lib/assets/movie1.jpg',
   'lib/assets/movie2.jpg',
@@ -26,10 +28,15 @@ class _movie1State extends State<movie1> {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
             icon: Icon(
               Icons.account_circle,
-              color: Colors.white,
+              color: Colors.blue,
               size: 40,
             ),
           ),
@@ -272,7 +279,7 @@ class _movie1State extends State<movie1> {
                 ),
               ),
             ),
-            SizedBox(height: 6),
+            SizedBox(height: 4),
             Container(
               height: 100,
               child: ListView.builder(
@@ -462,10 +469,436 @@ class _movie2State extends State<movie2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 2'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 2'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[1],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Harry Potter',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -481,10 +914,436 @@ class _movie3State extends State<movie3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 3'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 3'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[2],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Love Story',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -500,10 +1359,436 @@ class _movie4State extends State<movie4> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 4'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 4'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[3],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Adipurush',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -519,10 +1804,436 @@ class _movie5State extends State<movie5> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 5'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 5'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[4],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Master',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -538,10 +2249,436 @@ class _movie6State extends State<movie6> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 6'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 6'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[5],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Airlift',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -557,10 +2694,436 @@ class _movie7State extends State<movie7> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 7'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 7'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[6],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Titanic',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -576,10 +3139,436 @@ class _movie8State extends State<movie8> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page 8'),
+        backgroundColor: Color.fromARGB(255, 1, 10, 18),
+        elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+               Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => profile()),
+              );
+            },
+            icon: Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+              size: 40,
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text('This is Page 8'),
+      backgroundColor: Color.fromARGB(255, 1, 10, 18),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.asset(
+                imagePaths[7],
+                //  fit: BoxFit.contain,
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -1),
+              ),
+            ),
+            SizedBox(height: 5),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10.0),
+                child: Text(
+                  'Captain Marvel',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.check_box_rounded,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(width: 8.0),
+                    Text(
+                      'watch with a Prime membership',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 1 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Watch with Prime',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 2 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'Rent movie HD ₹70',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 386,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle button 3 press
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          8.0), // Adjust the border radius value as needed
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Color.fromARGB(255, 63, 84, 96)),
+                ),
+                child: Text(
+                  'More purchase options',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'Rentals include 30 days to start watching this video and 48 hours to finish once started.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              color: Color.fromARGB(255, 1, 10, 18),
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16.0), // Add horizontal padding
+              height: 70.0, // Set the height of the footer
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // Add your home button logic here
+                        },
+                        icon: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watchlist',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          // downloads button logic here
+                        },
+                        icon: Icon(
+                          Icons.movie,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Watch Party',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          //  find button logic here
+                        },
+                        icon: Icon(
+                          Icons.share,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Share',
+                        style: TextStyle(color: Colors.white, fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  'After being injected with a special "Super-Soldier" serum which leads to him developing superpowers Steve must thwart the plans of a warmonger.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(height: 15),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                 padding:
+                    const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
+                child: Text(
+                  ' Customers also watched',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: imagePaths.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      print('Button clicked!');
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie1()),
+                        );
+                      } else if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie2()),
+                        );
+                      } else if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie3()),
+                        );
+                      } else if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie4()),
+                        );
+                      } else if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie5()),
+                        );
+                      } else if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie6()),
+                        );
+                      } else if (index == 6) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie7()),
+                        );
+                      } else if (index == 7) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => movie8()),
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: 210,
+                      margin:
+                          EdgeInsets.only(left: index == 0 ? 8 : 0, right: 15),
+                      child: Image.asset(
+                        imagePaths[index],
+                        //  fit: BoxFit.contain,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+
+      ),
+      bottomNavigationBar: Container(
+        color: Color.fromARGB(255, 1, 10, 18),
+        padding:
+            EdgeInsets.symmetric(horizontal: 16.0), // Add horizontal padding
+        height: 70.0, // Set the height of the footer
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // Add your home button logic here
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Homepage()),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              //for both Text and icon in a a single column
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  store button logic here
+                  },
+                  icon: Icon(
+                    Icons.store,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Store',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  live TV button logic here
+                  },
+                  icon: Icon(
+                    Icons.tv,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Live TV',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    // downloads button logic here
+                  },
+                  icon: Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Downloads',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    //  find button logic here
+                  },
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  'Find',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
