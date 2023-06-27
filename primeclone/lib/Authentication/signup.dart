@@ -182,6 +182,7 @@ class _SignupPageState extends State<Signup> {
                             codeAutoRetrievalTimeout: (e) {
                               print("Error ${e.toString()}");
                             });
+                            
                       }
                     },
                     child: Text(

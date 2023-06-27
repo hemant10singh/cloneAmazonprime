@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:primeclone/Authentication/authfunctions.dart';
 import 'package:primeclone/Authentication/signup.dart';
@@ -18,8 +17,6 @@ class _LoginPageState extends State<Login> {
   String password='';
 
   
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

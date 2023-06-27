@@ -5,6 +5,9 @@ class FirebaseServices{
     await FirebaseFirestore.instance
     .collection('users')
     .doc(uid)
+    .collection('personal details')
+    .doc(uid)
     .set({'email':email,'name':fullname});
   }
+
 }

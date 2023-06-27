@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:primeclone/Settings/settingsPages.dart';
 
 import '../Authentication/login.dart';
 
@@ -12,15 +14,65 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   bool autoplayEnabled = false;
+  bool allowNotifications = false;
+   @override
+    void initState() {
+    super.initState();
+    // Retrieve notification settings when the widget is initialized
+    retrieveNotificationSettings();
+    retrieveLanguageSettings();
+  }
+
+  Future<void> retrieveNotificationSettings() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final notificationsRef = FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .collection('notification details')
+            .doc(user.uid);
+
+        final snapshot = await notificationsRef.get();
+        if (snapshot.exists) {
+          final data = snapshot.data() as Map<String, dynamic>;
+          setState(() {
+            allowNotifications = data['allowNotifications'] == 'On';
+          });
+        }
+      }
+    } catch (e) {
+      print('Error retrieving notification settings: $e');
+    }
+  }
+ String selectedLanguage = '';
+Future<void> retrieveLanguageSettings() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final notificationsRef = FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .collection('Language details')
+            .doc(user.uid);
+
+        final snapshot = await notificationsRef.get();
+        if (snapshot.exists) {
+          final data = snapshot.data() as Map<String, dynamic>;
+          setState(() {
+            selectedLanguage = data['Language'];
+           
+          });
+        }
+      }
+    } catch (e) {
+      print('Error retrieving notification settings: $e');
+    }
+  }
+
+  
+
   final users = FirebaseAuth.instance.currentUser;
-  //  Future<void> _signOut() async {
-  //   try {
-  //     await FirebaseAuth.instance.signOut();
-  //     // Do any additional operations after sign out if needed
-  //   } catch (e) {
-  //     print('Error signing out: $e');
-  //   }
-  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,13 +133,15 @@ class _SettingsState extends State<Settings> {
                     fontSize: 17),
               ),
               subtitle: Text(
-                'On',
+                allowNotifications ? 'On' : 'Off',
                 style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w500,
                     fontSize: 17),
               ),
-              onTap: () {},
+              onTap: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => Notifications()));
+              },
             ),
             ListTile(
               title: Text(
@@ -217,13 +271,15 @@ class _SettingsState extends State<Settings> {
                     fontSize: 17),
               ),
               subtitle: Text(
-                'English',
+                selectedLanguage,
                 style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.w500,
                     fontSize: 17),
               ),
-              onTap: () {},
+              onTap: () {
+                 Navigator.push(context,MaterialPageRoute(builder: (context) => Languages()));
+              },
             ),
             ListTile(
               title: Text(
