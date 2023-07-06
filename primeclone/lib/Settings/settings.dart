@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:primeclone/Settings/settingsPages.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Authentication/login.dart';
+import '../Authentication/splashScreen.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -229,6 +231,9 @@ Future<void> retrieveLanguageSettings() async {
               ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                 var prefs= await SharedPreferences.getInstance();
+                      prefs.setBool(SplashScreenState.KEYLOGIN, false);
+                      
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Login()),

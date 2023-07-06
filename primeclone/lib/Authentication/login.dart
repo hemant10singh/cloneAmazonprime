@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:primeclone/Authentication/authfunctions.dart';
 import 'package:primeclone/Authentication/signup.dart';
-import 'package:primeclone/homePage.dart';
-
+import 'package:primeclone/Authentication/splashScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -12,11 +12,16 @@ class Login extends StatefulWidget {
 class _LoginPageState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _formkey= GlobalKey<FormState>();
-  String email='';
-  String password='';
+  final _formkey = GlobalKey<FormState>();
+  String email = '';
+  String password = '';
 
-  
+  // @override
+  // void initState(){
+  //   super.initState();
+  //   getValue();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,16 +60,15 @@ class _LoginPageState extends State<Login> {
                   ),
                 ),
                 TextFormField(
-                   key: ValueKey('email'),
+                  key: ValueKey('email'),
                   controller: _emailController,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     hintText: 'Email or phone number',
                     hintStyle: TextStyle(
-                      color: const Color.fromARGB(
-                          255, 210, 233, 252), // Set the hint text color to white
+                      color: const Color.fromARGB(255, 210, 233,
+                          252), // Set the hint text color to white
                     ),
-                   
                     filled: true,
                     fillColor: const Color.fromARGB(255, 2, 18, 32),
                     border: OutlineInputBorder(
@@ -85,26 +89,26 @@ class _LoginPageState extends State<Login> {
                   //   else{
                   //     return null;
                   //   }
-        
+
                   // },
-                  onSaved: (value){
+                  onSaved: (value) {
                     setState(() {
-                       email=value!;
+                      email = value!;
                     });
                   },
                 ),
                 SizedBox(height: 2),
                 TextFormField(
                   controller: _passwordController,
-                   key: ValueKey('password'),
+                  key: ValueKey('password'),
                   style: TextStyle(color: Colors.white),
                   obscureText: true,
                   decoration: InputDecoration(
                     //password textfield
                     hintText: 'Amazon password',
                     hintStyle: TextStyle(
-                      color: const Color.fromARGB(
-                          255, 210, 233, 252), // Set the hint text color to white
+                      color: const Color.fromARGB(255, 210, 233,
+                          252), // Set the hint text color to white
                     ),
                     filled: true,
                     fillColor: Color.fromARGB(255, 2, 18, 32),
@@ -117,19 +121,16 @@ class _LoginPageState extends State<Login> {
                       horizontal: 20.0,
                     ),
                   ),
-                  validator: (value){
-                    if(value.toString().length<6 )
-                    {
+                  validator: (value) {
+                    if (value.toString().length < 6) {
                       return 'Password is so small';
-                    }
-                    else{
+                    } else {
                       return null;
                     }
-        
                   },
-                  onSaved: (value){
+                  onSaved: (value) {
                     setState(() {
-                       password=value!;
+                      password = value!;
                     });
                   },
                 ),
@@ -137,14 +138,14 @@ class _LoginPageState extends State<Login> {
                 Container(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      if(_formkey.currentState!.validate())
-                      {
+                    onPressed: () async {
+                      if (_formkey.currentState!.validate()) {
                         _formkey.currentState!.save();
+                        var prefs = await SharedPreferences.getInstance();
+                        prefs.setBool(SplashScreenState.KEYLOGIN, true);
+                        AuthServices.signin(email, password, context);
+          
                       }
-                      AuthServices.signin(email, password);
-                       Navigator.push(context,MaterialPageRoute(builder: (context) => Homepage()));
-    
                     },
                     child: Text(
                       'Sign in', //sign in button
@@ -190,10 +191,12 @@ class _LoginPageState extends State<Login> {
                       MaterialPageRoute(builder: (context) => Signup()),
                     );
                   },
-                  child: Text(
-                    'Create a new Amazon account',
-                    style: TextStyle(
-                      color: Colors.white,
+                  child: Center(
+                    child: Text(
+                      'Create a new account',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   style: ElevatedButton.styleFrom(

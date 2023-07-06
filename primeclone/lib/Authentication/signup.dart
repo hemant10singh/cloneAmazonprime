@@ -158,31 +158,31 @@ class _SignupPageState extends State<Signup> {
                     onPressed: () {
                       if (_formkey.currentState!.validate()) {
                         _formkey.currentState!.save();
-                      }
-                      
-                      if (email.contains('@')) {
-                        AuthServices.signup(email, password,fullname);
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Login()));
-                      } else {
-                        auth.verifyPhoneNumber(
-                            phoneNumber: email,
-                            verificationCompleted: (_) {},
-                            verificationFailed: (e) {
-                              print("Error ${e.toString()}");
-                            },
-                            codeSent: (String verificationid, int? token) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Verifycodescreen(
-                                          verificationId: verificationid,
-                                          phoneNumber: email)));
-                            },
-                            codeAutoRetrievalTimeout: (e) {
-                              print("Error ${e.toString()}");
-                            });
-                            
+
+                        if (email.contains('@')) {
+                          AuthServices.signup(
+                              email, password, fullname, context);
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Login()));
+                        } else {
+                          auth.verifyPhoneNumber(
+                              phoneNumber: email,
+                              verificationCompleted: (_) {},
+                              verificationFailed: (e) {
+                                print("Error ${e.toString()}");
+                              },
+                              codeSent: (String verificationid, int? token) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Verifycodescreen(
+                                            verificationId: verificationid,
+                                            phoneNumber: email)));
+                              },
+                              codeAutoRetrievalTimeout: (e) {
+                                print("Error ${e.toString()}");
+                              });
+                        }
                       }
                     },
                     child: Text(

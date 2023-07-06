@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:primeclone/movies/action.dart';
 import 'package:primeclone/profile.dart';
 
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+
 class Homepage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -24,12 +26,107 @@ class _HomePageState extends State<Homepage> {
   Timer? timer;
   late PageController pageController;
 
+  TutorialCoachMark? tutorialCoachMark;
+  List<TargetFocus> targets = [];
+  GlobalKey profileKey = GlobalKey();
+  GlobalKey ALLKey = GlobalKey();
+  GlobalKey MoviesKey = GlobalKey();
+  GlobalKey TVshowsKey = GlobalKey();
+  bool isCoachMarkShown = false;
+
   @override
   void initState() {
     super.initState();
     // Start automatically changing the images after some time
     startTimer();
     pageController = PageController(initialPage: currentIndex + 1);
+    Future.delayed(const Duration(seconds: 1), () {
+       if (isCoachMarkShown==false) {
+      _showTutorialCoachmark();
+    }
+   
+    });
+  }
+
+  void _showTutorialCoachmark() {
+    _initTarget();
+    tutorialCoachMark = TutorialCoachMark(
+      targets: targets,
+      pulseEnable: false,
+      colorShadow: Color.fromARGB(255, 145, 197, 240),
+      onClickTarget: (targets){
+        print("${targets.identify}");
+      },
+      onSkip: (){
+         setState(() {
+        isCoachMarkShown = true; 
+      });
+        print("skipped");
+      }
+
+    )..show(context: context);
+  }
+
+  void _initTarget() {
+    targets = [
+      TargetFocus(identify: "profile-key", keyTarget: profileKey, contents: [
+        TargetContent(
+            align: ContentAlign.bottom,
+            builder: (context, controller) {
+              return CoachmarkDesc(text: "User profile",
+              onNext: (){
+                controller.next();
+              },
+              onSkip: (){
+                controller.skip();
+              },
+              );
+            })
+      ]),
+      TargetFocus(identify: "All-movies", keyTarget: ALLKey, contents: [
+        TargetContent(
+            align: ContentAlign.bottom,
+            builder: (context, controller) {
+              return CoachmarkDesc(text: "All category movies",
+              onNext: (){
+                controller.next();
+              },
+              onSkip: (){
+                controller.skip();
+              },
+              );
+            })
+      ]),
+       TargetFocus(identify: "Movies", keyTarget: MoviesKey, contents: [
+        TargetContent(
+            align: ContentAlign.bottom,
+            builder: (context, controller) {
+              return CoachmarkDesc(text: "Only movies",
+              onNext: (){
+                controller.next();
+              },
+              onSkip: (){
+                controller.skip();
+              },
+              );
+            })
+      ]),
+       TargetFocus(identify: "TV-shows", keyTarget: TVshowsKey, contents: [
+        TargetContent(
+            align: ContentAlign.bottom,
+            builder: (context, controller) {
+              return CoachmarkDesc(text: "Only TV shows",
+              onNext: (){
+                controller.next();
+              },
+              onSkip: (){
+                controller.skip();
+              },
+              );
+            })
+      ]),
+       
+    ];
   }
 
   @override
@@ -37,6 +134,7 @@ class _HomePageState extends State<Homepage> {
     timer?.cancel();
     pageController.dispose();
     super.dispose();
+    // tutorialCoachMark?.cleanUp();
   }
 
   void startTimer() {
@@ -91,12 +189,13 @@ class _HomePageState extends State<Homepage> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
             },
             icon: Icon(
+              key: profileKey,
               Icons.account_circle,
               color: Colors.blue,
               size: 40,
@@ -112,6 +211,7 @@ class _HomePageState extends State<Homepage> {
                 onPressed: () {},
                 child: Text(
                   'All',
+                  key: ALLKey,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 19,
@@ -121,6 +221,7 @@ class _HomePageState extends State<Homepage> {
               TextButton(
                 onPressed: () {},
                 child: Text(
+                  key: MoviesKey,
                   'Movies',
                   style: TextStyle(
                     color: Colors.white,
@@ -131,6 +232,7 @@ class _HomePageState extends State<Homepage> {
               TextButton(
                 onPressed: () {},
                 child: Text(
+                  key: TVshowsKey,
                   'TV shows',
                   style: TextStyle(
                     color: Colors.white,
@@ -206,7 +308,7 @@ class _HomePageState extends State<Homepage> {
                         imagePaths[actualIndex],
                         //  fit: BoxFit.contain,
                         fit: BoxFit.cover,
-                       alignment: Alignment(0, 0.6),
+                        alignment: Alignment(0, 0.6),
                       ),
                     ),
                   );
@@ -328,7 +430,6 @@ class _HomePageState extends State<Homepage> {
                         imagePaths[index],
                         //  fit: BoxFit.contain,
                         fit: BoxFit.cover,
-                        
                       ),
                     ),
                   );
@@ -754,6 +855,69 @@ class _HomePageState extends State<Homepage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CoachmarkDesc extends StatefulWidget {
+  const CoachmarkDesc({
+    super.key,
+    required this.text,
+    this.skip = "Skip",
+    this.next = "Next",
+    this.onSkip,
+    this.onNext,
+  });
+
+  final String text;
+  final String skip;
+  final String next;
+  final void Function()? onSkip;
+  final void Function()? onNext;
+
+  @override
+  State<CoachmarkDesc> createState() => _CoachmarkDescState();
+}
+
+class _CoachmarkDescState extends State<CoachmarkDesc> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 250, 245, 245),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            widget.text,
+            style: Theme.of(context).textTheme.bodyMedium,
+            textScaleFactor: 1.2,
+            
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: widget.onSkip,
+                child: Text(widget.skip),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 3, 19, 32)),foregroundColor: MaterialStateProperty.all<Color>(Colors.white),),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: widget.onNext,
+                child: Text(widget.next),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 3, 19, 32)),foregroundColor: MaterialStateProperty.all<Color>(Colors.white),),
+                
+              )
+            ],
+          )
+        ],
       ),
     );
   }

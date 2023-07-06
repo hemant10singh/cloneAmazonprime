@@ -14,6 +14,7 @@ class _profileState extends State<profile> {
   List<bool> isSelected = [true, false];
   //  String userName = '';
  final users= FirebaseAuth.instance.currentUser;
+ 
 
 
   @override

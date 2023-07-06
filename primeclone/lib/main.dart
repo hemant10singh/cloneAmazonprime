@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:primeclone/Authentication/login.dart';
-import 'package:primeclone/homePage.dart';
-
+import 'package:primeclone/Authentication/splashScreen.dart';
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -17,7 +14,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
+ 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,19 +25,18 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,    //material3
       ),
      
-      // home: Login(),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder:(context, snapshot){
-          if(snapshot.hasData)
-          {
-            return Homepage();
-          }
-          else
-          return Login();
-
-        },
-      ),
+      home: SplashScreen(),
+      // home: StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder:(context, snapshot){
+      //     if(snapshot.hasData)
+      //     {
+      //       return Homepage();
+      //     }
+      //     else
+      //     return SplashScreen();
+      //   },
+      // ),
 
     );
   }
