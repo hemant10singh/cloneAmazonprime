@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:primeclone/Authentication/login.dart';
 import 'package:primeclone/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -40,8 +39,8 @@ class SplashScreenState extends State<SplashScreen> {
     var prefs = await SharedPreferences.getInstance();
     var isLoggedIn = prefs.getBool(KEYLOGIN);
     Timer(Duration(seconds: 2), () {
-      if (isLoggedIn != null&& isLoggedIn) {
-        if (isLoggedIn) {
+      if (isLoggedIn != null&& isLoggedIn==true) {
+        if (isLoggedIn==true) { 
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Homepage()));
         }

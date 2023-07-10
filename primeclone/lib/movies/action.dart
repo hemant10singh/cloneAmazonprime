@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:primeclone/homePage.dart';
-
 import '../profile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 List<String> imagePaths = [
   'lib/assets/movie1.jpg',
@@ -13,6 +14,19 @@ List<String> imagePaths = [
   'lib/assets/movie7.jpg',
   'lib/assets/movie8.webp',
 ];
+Future<String> getMovieLink(String movieId) async {
+    DocumentSnapshot snapshot = await FirebaseFirestore.instance
+        .collection('Movies')
+        .doc(movieId)
+        .get();
+
+    if (snapshot.exists) {
+      Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+      return data['link'];
+    } else {
+      return '';
+    }
+  }
 
 class movie1 extends StatefulWidget {
   @override
@@ -20,6 +34,8 @@ class movie1 extends StatefulWidget {
 }
 
 class _movie1State extends State<movie1> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +45,7 @@ class _movie1State extends State<movie1> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -99,8 +115,16 @@ class _movie1State extends State<movie1> {
             Container(
               width: 386,
               child: ElevatedButton(
-                onPressed: () {
-                  // Handle button 1 press
+                onPressed: () async {
+                  String movieLink = await getMovieLink('1');
+                  if (movieLink.isNotEmpty) {
+                    Uri movieUri = Uri.parse(movieLink);
+                    if (await canLaunchUrl(movieUri)) {
+                      await launchUrl(movieUri);
+                    } else {
+                      throw 'Could not launch $movieLink';
+                    }
+                  }
                 },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -263,11 +287,11 @@ class _movie1State extends State<movie1> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -347,7 +371,6 @@ class _movie1State extends State<movie1> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -474,7 +497,7 @@ class _movie2State extends State<movie2> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -544,8 +567,16 @@ class _movie2State extends State<movie2> {
             Container(
               width: 386,
               child: ElevatedButton(
-                onPressed: () {
-                  // Handle button 1 press
+                 onPressed: () async {
+                  String movieLink = await getMovieLink('2');
+                  if (movieLink.isNotEmpty) {
+                    Uri movieUri = Uri.parse(movieLink);
+                    if (await canLaunchUrl(movieUri)) {
+                      await launchUrl(movieUri);
+                    } else {
+                      throw 'Could not launch $movieLink';
+                    }
+                  }
                 },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -708,11 +739,11 @@ class _movie2State extends State<movie2> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -792,7 +823,6 @@ class _movie2State extends State<movie2> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -919,7 +949,7 @@ class _movie3State extends State<movie3> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -1153,11 +1183,11 @@ class _movie3State extends State<movie3> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -1237,7 +1267,6 @@ class _movie3State extends State<movie3> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -1364,7 +1393,7 @@ class _movie4State extends State<movie4> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -1434,8 +1463,16 @@ class _movie4State extends State<movie4> {
             Container(
               width: 386,
               child: ElevatedButton(
-                onPressed: () {
-                  // Handle button 1 press
+                onPressed: () async {
+                  String movieLink = await getMovieLink('2');
+                  if (movieLink.isNotEmpty) {
+                    Uri movieUri = Uri.parse(movieLink);
+                    if (await canLaunchUrl(movieUri)) {
+                      await launchUrl(movieUri);
+                    } else {
+                      throw 'Could not launch $movieLink';
+                    }
+                  }
                 },
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -1598,11 +1635,11 @@ class _movie4State extends State<movie4> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -1682,7 +1719,6 @@ class _movie4State extends State<movie4> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -1809,7 +1845,7 @@ class _movie5State extends State<movie5> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -2043,11 +2079,11 @@ class _movie5State extends State<movie5> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -2127,7 +2163,6 @@ class _movie5State extends State<movie5> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -2254,7 +2289,7 @@ class _movie6State extends State<movie6> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -2488,11 +2523,11 @@ class _movie6State extends State<movie6> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -2572,7 +2607,6 @@ class _movie6State extends State<movie6> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -2699,7 +2733,7 @@ class _movie7State extends State<movie7> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -2933,11 +2967,11 @@ class _movie7State extends State<movie7> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -3017,7 +3051,6 @@ class _movie7State extends State<movie7> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),
@@ -3144,7 +3177,7 @@ class _movie8State extends State<movie8> {
         actions: [
           IconButton(
             onPressed: () {
-               Navigator.push(
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => profile()),
               );
@@ -3378,11 +3411,11 @@ class _movie8State extends State<movie8> {
                 ),
               ),
             ),
-             SizedBox(height: 15),
+            SizedBox(height: 15),
             Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                 padding:
+                padding:
                     const EdgeInsets.symmetric(vertical: 7.0, horizontal: 13.0),
                 child: Text(
                   ' Customers also watched',
@@ -3462,7 +3495,6 @@ class _movie8State extends State<movie8> {
             ),
           ],
         ),
-
       ),
       bottomNavigationBar: Container(
         color: Color.fromARGB(255, 1, 10, 18),

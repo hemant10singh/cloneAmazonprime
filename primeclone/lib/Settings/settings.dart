@@ -231,9 +231,8 @@ Future<void> retrieveLanguageSettings() async {
               ),
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
-                 var prefs= await SharedPreferences.getInstance();
-                      prefs.setBool(SplashScreenState.KEYLOGIN, false);
-                      
+                var prefs= await SharedPreferences.getInstance();
+                prefs.setBool(SplashScreenState.KEYLOGIN, false);
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Login()),

@@ -16,7 +16,6 @@ class _profileState extends State<profile> {
  final users= FirebaseAuth.instance.currentUser;
  
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +28,7 @@ class _profileState extends State<profile> {
             InkWell(
               onTap: () {
                 // Handle profile button press
-              },
-              
+              },    
               child: Row(
                 children: [
                   Icon(
@@ -81,9 +79,7 @@ class _profileState extends State<profile> {
       ),
       
       backgroundColor: Color.fromARGB(255, 1, 10, 18),
-      
-      body: Column(
-        
+      body: Column( 
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(
